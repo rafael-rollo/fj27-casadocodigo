@@ -23,6 +23,10 @@ public class Product {
 	@ElementCollection
 	private List<Price> prices = new ArrayList<>();
 	
+	public Integer getId() {
+		return id;
+	}
+	
 	public String getTitle() {
 		return title;
 	}

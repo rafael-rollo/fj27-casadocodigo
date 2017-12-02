@@ -7,7 +7,6 @@
 <meta charset="UTF-8">
 <c:url value="/" var="contextPath" />
 <link rel="stylesheet" href="${contextPath }resources/css/uikit.min.css" />
-<link rel="stylesheet" href="${contextPath }resources/css/uikit-rtl.min.css" />
 <script src="${contextPath }resources/js/uikit.min.js"></script>
 <script src="${contextPath }resources/js/uikit-icons.min.js"></script>
 <title>Novo Livro</title>
