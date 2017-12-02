@@ -19,7 +19,14 @@
 			<h1>Todos os Livros</h1>
 		</header>
 		<section>
-			<table class="uk-table uk-table-small uk-table-responsive uk-table-striped uk-table-hover">
+			<c:if test="${newProduct != null }">
+				<div class="uk-alert-success" uk-alert>
+					<a class="uk-alert-close" uk-close></a>
+					<p>O título <strong>${newProduct }</strong> foi adicionado com sucesso!</p>
+				</div>
+			</c:if>
+			<table
+				class="uk-table uk-table-small uk-table-responsive uk-table-striped uk-table-hover">
 				<thead>
 					<tr>
 						<th>Id</th>
@@ -43,8 +50,9 @@
 					</c:forEach>
 				</tbody>
 			</table>
-			
-			<a class="uk-button uk-button-primary" href="<c:url value='/products/form'/>">Novo Livro</a> 
+
+			<a class="uk-button uk-button-primary"
+				href="<c:url value='/products/form'/>">Novo Livro</a>
 		</section>
 	</div>
 </body>
