@@ -32,6 +32,13 @@
 					<div class="uk-margin">
 						<input class="uk-input" type="text" name="numberOfPages" placeholder="Número de Páginas"/>
 					</div>
+					
+					<c:forEach var="bookType" items="${types }" varStatus="status">
+						<div class="uk-margin">
+							<input class="uk-input" type="text" name="prices[${status.index }].value" placeholder="Preço (R$) ${bookType.toString() }"/>
+						</div>
+						<input type="hidden" name="prices[${status.index }].bookType" value="${bookType }"/>
+					</c:forEach>
 		
 					<div>
 						<input class="uk-button uk-button-default" type="submit" value="Salvar" />
