@@ -1,22 +1,30 @@
 package br.com.casadocodigo.loja.controllers;
 
+import javax.transaction.Transactional;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import br.com.casadocodigo.loja.daos.ProductDao;
 import br.com.casadocodigo.loja.models.Product;
 
 @Controller
 public class ProductsController {
 
-	@RequestMapping(value = "/products/form")
+	@Autowired
+	private ProductDao productDao;
+	
+	@RequestMapping("/products/form")
 	public String form() {
 		return "products/form";
 	}
 
+	@Transactional
 	@RequestMapping("/products")
 	public String save(Product product) {
 		
-		System.out.println(product);
+		productDao.save(product);
 		return "products/ok";
 	}
 }
