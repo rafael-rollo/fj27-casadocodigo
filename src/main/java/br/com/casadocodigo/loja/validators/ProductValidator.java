@@ -28,7 +28,7 @@ public class ProductValidator implements Validator {
 
 		Integer numberOfPages = product.getNumberOfPages();
 		if (numberOfPages == null || numberOfPages < 30) {
-			errors.rejectValue("numberOfPages", "field.required");
+			errors.rejectValue("numberOfPages", "invalid");
 		}
 
 		List<Price> prices = product.getPrices();

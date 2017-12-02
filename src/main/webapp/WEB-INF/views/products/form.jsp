@@ -1,12 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <c:url value="/" var="contextPath" />
 <link rel="stylesheet" href="${contextPath }resources/css/uikit.min.css" />
+<link rel="stylesheet" href="${contextPath }resources/css/style.css" />
 <script src="${contextPath }resources/js/uikit.min.js"></script>
 <script src="${contextPath }resources/js/uikit-icons.min.js"></script>
 <title>Novo Livro</title>
@@ -14,27 +17,30 @@
 <body>
 	<div class="uk-container uk-container-small">
 		<section>
-			<c:url var="url" value="/products"/>
-			<form action="${url }" method="post">
+			<form:form servletRelativeAction="/products" method="post" commandName="product">
 				<fieldset class="uk-fieldset">
 		
 					<legend class="uk-legend">Novo Produto</legend>
 		
 					<div class="uk-margin">
-						<input class="uk-input" type="text" name="title" placeholder="Titulo"/>
+						<form:input path="title" placeholder="Título" cssClass="uk-input"/>
+						<form:errors path="title" cssClass="validation-error"/>						
 					</div>
 		
 					<div class="uk-margin">
-						<textarea class="uk-textarea" rows="5" name="description" placeholder="Descrição"></textarea>
+						<form:textarea rows="5" path="description" placeholder="Descrição" class="uk-textarea"/>
+						<form:errors path="description" cssClass="validation-error"/>
 					</div>
 					
 					<div class="uk-margin">
-						<input class="uk-input" type="text" name="numberOfPages" placeholder="Número de Páginas"/>
+						<form:input path="numberOfPages" placeholder="Número de Páginas" cssClass="uk-input"/>
+						<form:errors path="numberOfPages" cssClass="validation-error"/>
 					</div>
 					
 					<c:forEach var="bookType" items="${types }" varStatus="status">
 						<div class="uk-margin">
-							<input class="uk-input" type="text" name="prices[${status.index }].value" placeholder="Preço (R$) ${bookType.toString() }"/>
+							<form:input path="prices[${status.index }].value" placeholder="Preço (R$) ${bookType.toString() }" cssClass="uk-input"/>
+							<form:errors path="prices[${status.index }].value" cssClass="validation-error"/>
 						</div>
 						<input type="hidden" name="prices[${status.index }].bookType" value="${bookType }"/>
 					</c:forEach>
@@ -43,7 +49,7 @@
 						<input class="uk-button uk-button-default" type="submit" value="Salvar" />
 					</div>
 				</fieldset>
-			</form>
+			</form:form>
 		</section>
 	</div>
 </body>
