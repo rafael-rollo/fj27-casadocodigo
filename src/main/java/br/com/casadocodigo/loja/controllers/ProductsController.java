@@ -37,14 +37,7 @@ public class ProductsController {
 	@Transactional
 	@RequestMapping(method = RequestMethod.POST)
 	public ModelAndView save(@Valid Product product, BindingResult result, 
-			RedirectAttributes attributes) {
-		result.getFieldErrors().forEach(fieldError -> {
-			String[] codes = fieldError.getCodes();
-			for (String code : codes) {
-				System.out.println(code);
-			}
-		});
-		
+			RedirectAttributes attributes) {		
 		if (result.hasErrors()) {
 			return form(product);
 		}

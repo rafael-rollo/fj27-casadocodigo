@@ -44,7 +44,12 @@
 						</div>
 						<input type="hidden" name="prices[${status.index }].bookType" value="${bookType }"/>
 					</c:forEach>
-		
+					
+					<div class="uk-margin">
+						<form:input path="releaseDate" type="date" placeholder="Data de Lançamento" cssClass="uk-input" />
+						<form:errors path="releaseDate" cssClass="validation-error"/>
+					</div>
+					
 					<div>
 						<input class="uk-button uk-button-default" type="submit" value="Salvar" />
 					</div>

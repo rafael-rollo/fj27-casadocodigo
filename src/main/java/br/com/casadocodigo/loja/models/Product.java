@@ -1,6 +1,7 @@
 package br.com.casadocodigo.loja.models;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.persistence.ElementCollection;
@@ -15,6 +16,7 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 public class Product {
@@ -38,6 +40,10 @@ public class Product {
 	@NotEmpty
 	@Valid
 	private List<Price> prices = new ArrayList<>();
+	
+	@NotNull
+	@DateTimeFormat
+	private Calendar releaseDate;
 	
 	public Integer getId() {
 		return id;
@@ -78,5 +84,13 @@ public class Product {
 
 	public void setPrices(List<Price> prices) {
 		this.prices = prices;
+	}
+
+	public Calendar getReleaseDate() {
+		return releaseDate;
+	}
+
+	public void setReleaseDate(Calendar releaseDate) {
+		this.releaseDate = releaseDate;
 	}
 }
