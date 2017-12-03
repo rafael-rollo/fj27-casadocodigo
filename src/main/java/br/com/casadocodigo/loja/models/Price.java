@@ -6,13 +6,21 @@ import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.NotNull;
 
 @Embeddable
 public class Price {
 
 	@Column(scale = 2)
+	@NotNull
+	@DecimalMin("1.00")
+	@Digits(integer = 3,fraction=2)
 	private BigDecimal value;
+	
 	@Enumerated(EnumType.STRING)
+	@NotNull
 	private BookType bookType;
 
 	public BigDecimal getValue() {
