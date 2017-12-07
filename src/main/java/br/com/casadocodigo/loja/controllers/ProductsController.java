@@ -8,10 +8,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.casadocodigo.loja.daos.ProductDao;
+import br.com.casadocodigo.loja.infra.FileSaver;
 import br.com.casadocodigo.loja.models.BookType;
 import br.com.casadocodigo.loja.models.Product;
 
@@ -21,6 +23,9 @@ public class ProductsController {
 
 	@Autowired
 	private ProductDao productDao;
+	
+	@Autowired
+	private FileSaver fileSaver;
 
 	/*@InitBinder("product")
 	public void initBinder(WebDataBinder binder) {
@@ -36,11 +41,14 @@ public class ProductsController {
 
 	@Transactional
 	@RequestMapping(method = RequestMethod.POST)
-	public ModelAndView save(@Valid Product product, BindingResult result, 
-			RedirectAttributes attributes) {		
+	public ModelAndView save(@Valid Product product, BindingResult result,
+			MultipartFile summary, RedirectAttributes attributes) {		
 		if (result.hasErrors()) {
 			return form(product);
 		}
+		
+		String summaryPath = fileSaver.write("uploaded-summaries", summary);
+		product.setSummaryPath(summaryPath);
 		
 		productDao.save(product);
 

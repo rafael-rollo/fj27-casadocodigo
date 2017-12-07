@@ -17,7 +17,7 @@
 <body>
 	<div class="uk-container uk-container-small">
 		<section>
-			<form:form servletRelativeAction="/products" method="post" commandName="product">
+			<form:form servletRelativeAction="/products" method="post" commandName="product" enctype="multipart/form-data">
 				<fieldset class="uk-fieldset">
 		
 					<legend class="uk-legend">Novo Produto</legend>
@@ -48,6 +48,12 @@
 					<div class="uk-margin">
 						<form:input path="releaseDate" type="date" placeholder="Data de Lançamento" cssClass="uk-input" />
 						<form:errors path="releaseDate" cssClass="validation-error"/>
+					</div>
+					
+					<div class="js-upload" uk-form-custom>
+						<label for="summary">Sumário do Livro: </label>
+    						<input type="file" id="summary" name="summary" multiple>
+    						<button class="uk-button uk-button-default" type="button" tabindex="-1">Selecione o arquivo</button>
 					</div>
 					
 					<div>
