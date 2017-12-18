@@ -35,6 +35,7 @@
 						<th>Ebook</th>
 						<th>Impresso</th>
 						<th>Combo</th>
+						<th>Ações</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -46,6 +47,10 @@
 							<c:forEach var="price" items="${product.prices }">
 								<td>${price.value}</td>
 							</c:forEach>
+							<td>
+ 								<c:url value="/products/${product.id}" var="linkDetalhar"/>
+ 								<a href="${linkDetalhar}" uk-icon="icon: search" title="Ver Detalhes"></a>
+ 							</td>
 						</tr>
 					</c:forEach>
 				</tbody>
