@@ -24,6 +24,7 @@ public class CasadocodigoWebAppConfiguration extends WebMvcConfigurerAdapter {
 		InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
 		viewResolver.setPrefix("/WEB-INF/views/");
 		viewResolver.setSuffix(".jsp");
+		viewResolver.setExposedContextBeanNames("shoppingCart");
 		return viewResolver;
 	}
 	
