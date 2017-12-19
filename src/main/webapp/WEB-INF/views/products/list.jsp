@@ -25,6 +25,12 @@
 					<p>O título <strong>${newProduct }</strong> foi adicionado com sucesso!</p>
 				</div>
 			</c:if>
+			<c:if test="${successfulPayment != null }">
+				<div class="uk-alert-success" uk-alert>
+					<a class="uk-alert-close" uk-close></a>
+					<p>${successfulPayment }</p>
+				</div>
+			</c:if>
 			<table
 				class="uk-table uk-table-small uk-table-responsive uk-table-striped uk-table-hover">
 				<thead>

@@ -35,9 +35,7 @@
 <body class="product">
 	<header id="layout-header">
 		<div class="clearfix container">
-			<a href="/casadocodigo/products" id="logo">
-				<img src="${contextPath}resources/imagens/cdc-logo.svg"/>
-			</a>
+			<a href="/casadocodigo/products" id="logo"></a>
 			<div id="header-content">
 				<nav id="main-nav">
 					<ul class="clearfix">
