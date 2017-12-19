@@ -4,6 +4,8 @@ import javax.transaction.Transactional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
@@ -44,6 +46,7 @@ public class ProductsController {
 	}
 
 	@Transactional
+	@CacheEvict(value = "lastProducts", allEntries = true)
 	@RequestMapping(method = RequestMethod.POST)
 	public ModelAndView save(@Valid ProductForm productForm, BindingResult result,
 			RedirectAttributes attributes) {		
@@ -62,6 +65,7 @@ public class ProductsController {
 		return new ModelAndView("redirect:/products");
 	}
 
+	@Cacheable("lastProducts")
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView list() {
 		ModelAndView modelAndView = new ModelAndView("products/list");
