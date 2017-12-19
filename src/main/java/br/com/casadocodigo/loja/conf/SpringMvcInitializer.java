@@ -9,19 +9,20 @@ public class SpringMvcInitializer extends AbstractAnnotationConfigDispatcherServ
 
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
-		return new Class<?>[] {SecurityConfiguration.class};
+		return new Class<?>[] { SecurityConfiguration.class, CasadocodigoWebAppConfiguration.class,
+				JpaConfiguration.class };
 	}
 
 	@Override
 	protected Class<?>[] getServletConfigClasses() {
-		return new Class<?>[] {CasadocodigoWebAppConfiguration.class, JpaConfiguration.class};
+		return new Class<?>[] {};
 	}
 
 	@Override
 	protected String[] getServletMappings() {
-		return new String[] {"/"};
+		return new String[] { "/" };
 	}
-	
+
 	@Override
 	protected void customizeRegistration(Dynamic registration) {
 		registration.setMultipartConfig(new MultipartConfigElement(""));
