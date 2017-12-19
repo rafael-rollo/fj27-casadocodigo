@@ -1,6 +1,7 @@
 package br.com.casadocodigo.loja.controllers;
 
 import java.math.BigDecimal;
+import java.util.concurrent.Callable;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -44,24 +45,26 @@ public class ShoppingController {
 	}
 
 	@RequestMapping(value = "/checkout", method = RequestMethod.POST)
-	public String checkout(RedirectAttributes attributes) {
-		BigDecimal total = cart.getTotal();
-		String uri = "http://book-payment.herokuapp.com/payment";
-
-		try {
-			String response = restTemplate.postForObject(uri, new PaymentData(total), String.class);
-			System.out.println(response);
-
-			cart.clear();
-			
-			attributes.addFlashAttribute("successfulPayment", "Pagamento efetuado com sucesso");
-			return "redirect:/products";
-
-		} catch (HttpClientErrorException e) {
-			System.out.println("Ocorreu um erro ao criar o Pagamento: " + e.getMessage());
-			attributes.addFlashAttribute("unsuccessfulPayment", "Não foi possível gerar o pagamento!");
-			return "redirect:/shopping";
-		}
+	public Callable<String> checkout(RedirectAttributes attributes) {
+		return () -> {
+			BigDecimal total = cart.getTotal();
+			String uri = "http://book-payment.herokuapp.com/payment";
+	
+			try {
+				String response = restTemplate.postForObject(uri, new PaymentData(total), String.class);
+				System.out.println(response);
+	
+				cart.clear();
+				
+				attributes.addFlashAttribute("successfulPayment", "Pagamento efetuado com sucesso");
+				return "redirect:/products";
+	
+			} catch (HttpClientErrorException e) {
+				System.out.println("Ocorreu um erro ao criar o Pagamento: " + e.getMessage());
+				attributes.addFlashAttribute("unsuccessfulPayment", "Não foi possível gerar o pagamento!");
+				return "redirect:/shopping";
+			}
+		};
 	}
 
 	private ShoppingItem createItem(Integer productId, BookType bookType) {
