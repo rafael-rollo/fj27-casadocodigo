@@ -116,7 +116,7 @@
 				<tr>
 					<td colspan="2">
 						<c:url value="/shopping/checkout" var="checkoutUrl"/>
-						<form:form action="${checkoutUrl}" method="post">
+						<form:form servletRelativeAction="/shopping/checkout" method="post">
 							<input type="submit" class="checkout" name="checkout" value="Finalizar compra" id="checkout" />
 						</form:form>
 					</td>
