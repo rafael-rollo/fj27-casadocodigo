@@ -4,6 +4,7 @@
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
 <!DOCTYPE html>
 <html class="no-js" lang="pt">
@@ -105,7 +106,7 @@
 				<security:authentication property="principal" var="user"/>
 				<c:url var="logoutUrl" value="/logout" />
 				<li class="uk-align-right user-info">
-					<span>Olá, ${user.name }</span>
+					<span><spring:message code="users.welcome" arguments="${user.name }"/></span>
 					<span uk-icon="icon: user"></span>
 					<span uk-icon="icon: triangle-down"></span>
 					<div uk-dropdown="mode: click">
@@ -180,12 +181,18 @@
 					</li>
 				</ul>
 				
-				<p class="footer-title">Redes Sociais</p>
+				<p class="footer-title"><spring:message code="footer.languages"/></p>
 				
 				<ul>
-					<li class="social-links">
-						<a href="http://www.twitter.com/casadocodigo" target="_blank" id="twitter" rel="nofollow">Facebook</a>						
-						<a href="http://www.facebook.com/casadocodigo" target="_blank" id="facebook" rel="nofollow">Twitter</a>
+					<li>
+						<a href="${contextPath }products?locale=pt_BR" rel="nofollow">
+							<img class="flagIcon" alt="Idioma do Brasil" src="${contextPath }resources/imagens/br_icon.png"/>
+						</a>						
+					</li>
+					<li>
+						<a href="${contextPath }products?locale=en_US" rel="nofollow">
+							<img class="flagIcon" alt="Idioma do Brasil" src="${contextPath }resources/imagens/us_icon.png"/>
+						</a>
 					</li>
 				</ul>
 			</div>
