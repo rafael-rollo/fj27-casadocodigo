@@ -1,3 +1,18 @@
+footer {
+	margin-top: 20px;
+}
+
 .validation-error {
 	color: #e74c3c;
+}
+
+.user-info {
+	padding: 0.1em; 
+	display: flex;
+	align-items: center;
+	color: #fff;
+}
+
+.user-info * {
+	margin: .2em;
 }
