@@ -15,6 +15,17 @@ public class Role implements GrantedAuthority {
 	@Id
 	private String name;
 	
+	/**
+	 * @deprecated
+	 */
+	public Role() {
+	}
+	
+	public Role(String name) {
+		this.name = name;
+		
+	}
+	
 	@Override
 	public String getAuthority() {
 		return this.getName();
