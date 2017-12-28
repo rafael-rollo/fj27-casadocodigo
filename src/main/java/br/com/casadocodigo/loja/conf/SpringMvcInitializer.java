@@ -1,8 +1,10 @@
 package br.com.casadocodigo.loja.conf;
 
+import javax.servlet.Filter;
 import javax.servlet.MultipartConfigElement;
 import javax.servlet.ServletRegistration.Dynamic;
 
+import org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 public class SpringMvcInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
@@ -26,6 +28,11 @@ public class SpringMvcInitializer extends AbstractAnnotationConfigDispatcherServ
 	@Override
 	protected void customizeRegistration(Dynamic registration) {
 		registration.setMultipartConfig(new MultipartConfigElement(""));
+	}
+	
+	@Override
+	protected Filter[] getServletFilters() {
+		return new Filter[] {new OpenEntityManagerInViewFilter()};
 	}
 
 }

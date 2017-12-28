@@ -22,7 +22,7 @@ public class ProductDao {
 	}
 
 	public List<Product> list() {
-		String query = "select distinct p from Product p join fetch p.prices";
+		String query = "select distinct p from Product p";
 		return manager.createQuery(query, Product.class).getResultList();
 	}
 
